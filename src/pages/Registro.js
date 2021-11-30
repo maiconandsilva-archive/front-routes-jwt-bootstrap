@@ -3,6 +3,16 @@ import api from "../services/api";
 import Cabecalho from "../components/Cabecalho";
 import Rodape from "../components/Rodape";
 import { Context } from "../context/AuthContext";
+import {
+  Container,
+  FormGroup,
+  Row,
+  Table,
+  Button,
+  Form,
+  Input,
+  Col
+} from "reactstrap";
 
 const Registro = () => {
   const [idregistro, setIdregistro] = useState("");
@@ -84,46 +94,44 @@ const Registro = () => {
   };
 
   return (
-    <div className="App-container">
-      <div className="row">
+    <Container>
+      <Row>
         <Cabecalho />
-      </div>
-      <div className="row">
+      </Row>
+      <Row>
         <h3>Registro</h3>
-      </div>
-      <div className="row">
-        <form>
+      </Row>
+      <Row>
+        <Form>
           {idregistro && (
             <div>
               <label>ID: {idregistro}</label>
             </div>
           )}
-          <div className="row">
+          <FormGroup>
             <label>Vacina</label>
-            <select
-              value={idvacina}
-              onChange={(e) => setIdvacina(e.target.value)}
-            >
+            <Input type="select" value={idvacina}
+              onChange={(e) => setIdvacina(e.target.value)}>
               {vacinas.map((item) => (
                 <option key={item.idvacina} value={item.idvacina}>
                   {item.nome}
                 </option>
               ))}
-            </select>
-          </div>
-          <div className="row">
+            </Input>
+          </FormGroup>
+          <FormGroup>
             <label>Data</label>
-            <input value={data} onChange={(e) => setData(e.target.value)} />
-          </div>
-          <div className="column">
-            <button onClick={save}>Criar</button>
-            <button onClick={reset}>Limpar</button>
-          </div>
-        </form>
-      </div>
+            <Input value={data} onChange={(e) => setData(e.target.value)} />
+          </FormGroup>
+          <Row>
+            <Col md={6}><Button className="w-100" onClick={save}>Salvar</Button></Col>
+            <Col md={6}><Button className="w-100" onClick={reset}>Limpar</Button></Col>
+          </Row>
+        </Form>
+      </Row>
       {registros.length > 0 && (
-        <div className="row">
-          <table>
+        <Row>
+          <Table responsive>
             <thead>
               <tr>
                 <th>ID</th>
@@ -148,13 +156,13 @@ const Registro = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
+          </Table>
+        </Row>
       )}
-      <div className="row">
-      <Rodape />
-    </div>
-    </div>
+      <Row>
+        <Rodape />
+      </Row>
+    </Container>
   );
 };
 

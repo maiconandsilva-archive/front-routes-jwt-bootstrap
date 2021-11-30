@@ -3,6 +3,16 @@ import Cabecalho from "../components/Cabecalho";
 import Rodape from "../components/Rodape";
 import api from "../services/api";
 import { Context } from "../context/AuthContext";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Row,
+  Table
+} from "reactstrap";
 
 const Vacina = () => {
   const [idvacina, setIdvacina] = useState("");
@@ -72,31 +82,33 @@ const Vacina = () => {
   };
 
   return (
-    <div className="App-container">
-      <div className="row">
+    <Container>
+      <Row>
         <Cabecalho />
-      </div>
+      </Row>
       <div className="row">
         <h3>Vacina</h3>
       </div>
-      <form>
-        {idvacina && (
-          <div>
-            <label>ID: {idvacina}</label>
-          </div>
-        )}
-        <div className="row">
-          <label>Nome</label>
-          <input value={nome} onChange={(e) => setNome(e.target.value)} />
-        </div>
-        <div className="column grouped-buttons">
-          <button onClick={save}>Salvar</button>
-          <button onClick={reset}>Limpar</button>
-        </div>
-      </form>
+      <Row>
+        <Form>
+          {idvacina && (
+            <div>
+              <label>ID: {idvacina}</label>
+            </div>
+          )}
+          <FormGroup>
+            <label>Nome</label>
+            <Input value={nome} onChange={(e) => setNome(e.target.value)} />
+          </FormGroup>
+          <Row>
+            <Col md={6}><Button className="w-100" onClick={save}>Salvar</Button></Col>
+            <Col md={6}><Button className="w-100" onClick={reset}>Limpar</Button></Col>
+          </Row>
+        </Form>
+      </Row>
       {vacinas.length > 0 && (
-        <div className="row">
-          <table>
+        <Row>
+          <Table>
             <thead>
               <tr>
                 <th>ID</th>
@@ -118,13 +130,13 @@ const Vacina = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
+          </Table>
+        </Row>
       )}
-      <div className="row">
+      <Row>
         <Rodape />
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 

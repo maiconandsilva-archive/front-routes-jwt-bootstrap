@@ -28,13 +28,15 @@ function CustomRoute({ isAdmin, isUser, ...rest }) {
 
 export default function Routes() {
   return (
-    <Switch>
-      <CustomRoute exact path="/" component={Login} />
-      <CustomRoute exact path="/login" component={Login} />
-      <CustomRoute isAdmin exact path="/perfil" component={Perfil} />
-      <CustomRoute isUser exact path="/registro" component={Registro} />
-      <CustomRoute isUser exact path="/usuario" component={Usuario} />
-      <CustomRoute isAdmin exact path="/vacina" component={Vacina} />
-    </Switch>
+    <div className="mx-auto">
+      <Switch>
+        <CustomRoute exact path="/" component={Login} />
+        <CustomRoute exact path="/login" component={Login} />
+        <CustomRoute isAdmin exact path="/perfil" component={Perfil} />
+        <CustomRoute isUser exact path="/registro" component={Registro} />
+        <CustomRoute isUser exact path="/usuario" component={Usuario} />
+        <CustomRoute isAdmin exact path="/vacina" component={Vacina} />
+      </Switch>
+    </div>
   );
 }

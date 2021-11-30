@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Cabecalho from "../components/Cabecalho";
 import Rodape from "../components/Rodape";
 import { Context } from "../context/AuthContext";
+import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
 
 export default function Login() {
   const { handleLogin } = useContext(Context);
@@ -13,33 +14,44 @@ export default function Login() {
   };
 
   return (
-    <div className="App-container">
-      <div className="row">
+    <Container>
+      <Row>
         <Cabecalho />
-      </div>
-      <div className="row">
-        <h4>Login </h4>
-      </div>
-      <form onSubmit={submeter}>
-        <div className="row">
-          <label>e-mail</label>
-          <input value={mail} onChange={(e) => setMail(e.target.value)} />
-        </div>
-        <div className="row">
-          <label>Senha</label>
-          <input
-            type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
-        </div>
-        <div className="row">
-          <button type="submit">Enviar</button>
-        </div>
-      </form>
-      <div className="row">
-        <Rodape />
-      </div>
-    </div>
+      </Row>
+      <Row>
+        <Form>
+          <Row><h4>Login </h4></Row>
+          <FormGroup>
+            <Label for="email">E-mail</Label>
+            <Input
+              id="email"
+              name="email"
+              placeholder="example@email.com"
+              type="email"
+              value={mail} onChange={(e) => setMail(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="password">Senha</Label>
+            <Input
+              id="password"
+              name="password"
+              placeholder="Senha forte"
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+          </FormGroup>
+          <Row>
+            <Col><Button className="w-100" onClick={submeter}>Enviar</Button></Col>
+          </Row>
+        </Form>
+      </Row>
+      <Row className="p-2">
+        <Col>
+          <Rodape />
+        </Col>
+      </Row>
+    </Container>
   );
 }

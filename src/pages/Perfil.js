@@ -3,6 +3,7 @@ import Cabecalho from "../components/Cabecalho";
 import Rodape from "../components/Rodape";
 import api from "../services/api";
 import { Context } from "../context/AuthContext";
+import {Col, Container, Form, FormGroup, Input, Row, Button, Table} from "reactstrap";
 
 const Perfil = () => {
   const [idusuario, setIdusuario] = useState("");
@@ -50,45 +51,45 @@ const Perfil = () => {
   };
 
   return (
-    <div className="App-container">
-      <div className="row">
+    <Container>
+      <Row>
         <Cabecalho />
-      </div>
-      <div className="row">
+      </Row>
+      <Row>
         <h4>Perfil de acesso</h4>
-      </div>
-      <div className="row">
-        <form>
+      </Row>
+      <Row>
+        <Form>
           {idusuario && (
-            <div className="row">
+            <FormGroup>
               <label>ID: {idusuario}</label>
-            </div>
+            </FormGroup>
           )}
-          <div className="row">
+          <FormGroup>
             <label>Perfil</label>
-            <select value={perfil} onChange={(e) => setPerfil(e.target.value)}>
-              <option value=""></option>
+            <Input type="select" value={perfil} onChange={(e) => setPerfil(e.target.value)}>
+              <option value=""/>
               <option value="admin">Administrador</option>
               <option value="user">Usuário</option>
-            </select>
-          </div>
-          <div className="column">
-            <button onClick={save}>Salvar</button>
-            <button onClick={reset}>Limpar</button>
-          </div>
-        </form>
-      </div>
-      <div className="row">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>e-mail</th>
-              <th>Perfil</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usuarios.map((item) => (
+            </Input>
+          </FormGroup>
+          <Row>
+            <Col md={6}><Button className="w-100" onClick={save}>Salvar</Button></Col>
+            <Col md={6}><Button className="w-100" onClick={reset}>Limpar</Button></Col>
+          </Row>
+        </Form>
+      </Row>
+      <Row>
+         <Table responsive>
+           <thead>
+             <tr>
+               <th>ID</th>
+               <th>e-mail</th>
+               <th>Perfil</th>
+             </tr>
+           </thead>
+           <tbody>
+             {usuarios.map((item) => (
               <tr
                 key={item.idusuario}
                 onClick={() => {
@@ -102,12 +103,12 @@ const Perfil = () => {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
-      <div className="row">
-      <Rodape />
-    </div>
-    </div>
+        </Table>
+      </Row>
+      <Row>
+        <Rodape />
+      </Row>
+    </Container>
   );
 };
 

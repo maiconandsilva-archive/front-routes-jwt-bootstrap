@@ -3,6 +3,7 @@ import Cabecalho from "../components/Cabecalho";
 import api from "../services/api";
 import { Context } from "../context/AuthContext";
 import Rodape from "../components/Rodape";
+import {Container, Form, FormGroup, Row, Button, InputGroup, Input} from "reactstrap";
 
 const Usuario = () => {
   const [mail, setMail] = useState("");
@@ -38,33 +39,39 @@ const Usuario = () => {
   };
 
   return (
-    <div className="App-container">
-      <div className="row">
+    <Container>
+      <Row>
         <Cabecalho />
-      </div>
-      <div className="row">
+      </Row>
+      <Row>
         <h3>Seus dados de acesso</h3>
-      </div>
-      <form>
-        <div className="row">
-          <label>e-mail</label>
-          <input value={mail} onChange={(e) => setMail(e.target.value)} />
-          <button onClick={updateMail}>Alterar</button>
-        </div>
-        <div className="row">
-          <label>Senha</label>
-          <input
-            type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
-          <button onClick={updateSenha}>Alterar</button>
-        </div>
-      </form>
-      <div className="row">
+      </Row>
+      <Row>
+        <Form>
+          <FormGroup>
+            <label>e-mail</label>
+            <InputGroup>
+              <Input value={mail} onChange={(e) => setMail(e.target.value)} />
+              <Button onClick={updateMail}>Alterar</Button>
+            </InputGroup>
+          </FormGroup>
+          <FormGroup>
+            <label>Senha</label>
+            <InputGroup>
+              <Input
+                type="password"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+              />
+              <Button onClick={updateSenha}>Alterar</Button>
+            </InputGroup>
+          </FormGroup>
+        </Form>
+      </Row>
+      <Row>
         <Rodape />
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
